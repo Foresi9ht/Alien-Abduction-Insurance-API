@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+
+  db:
+    image: postgres:16-alpine
+    container_name: alien_db
+    environment:
+      POSTGRES_DB: aliendb
+      POSTGRES_USER: alienuser
+      POSTGRES_PASSWORD: alienpass
+    ports:
+      - "5432:5432"
+    volumes:
+      - alien_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U alienuser -d aliendb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: alien_app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/aliendb
+      SPRING_DATASOURCE_USERNAME: alienuser
+      SPRING_DATASOURCE_PASSWORD: alienpass
+      JWT_SECRET: alien-abduction-super-secret-key-2024-very-long-string-for-security
+      JWT_EXPIRATION: 86400000
+      NASA_API_KEY: DEMO_KEY
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: on-failure
+
+volumes:
+  alien_db_data:

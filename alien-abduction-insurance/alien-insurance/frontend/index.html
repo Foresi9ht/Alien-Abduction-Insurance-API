@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alien Abduction Insurance</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+<div class="scanline"></div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-logo">
+    <span>AAI <span class="nav-logo-sub">CORP</span></span>
+  </div>
+  <div class="nav-links" id="navLinks">
+    <a href="#" class="nav-link active" data-page="home">Home</a>
+    <a href="#" class="nav-link" data-page="quote">Quote</a>
+    <a href="#" class="nav-link auth-only hidden" data-page="policies">My policies</a>
+    <a href="#" class="nav-link auth-only hidden" data-page="claims">My claims</a>
+    <a href="#" class="nav-link admin-only hidden" data-page="admin">Admin</a>
+  </div>
+  <div class="nav-auth">
+    <span class="nav-user hidden" id="navUser"></span>
+    <button class="btn btn-ghost" id="authBtn" data-page="login">Sign in</button>
+    <button class="btn btn-danger hidden" id="logoutBtn">Sign out</button>
+  </div>
+</nav>
+
+<main class="app" id="app">
+
+  <section class="page active" id="page-home">
+    <div class="hero">
+      <div class="hero-badge">Est. 2024 · Sector 51</div>
+      <h1 class="hero-title">
+        <span class="hero-title-line">Alien</span>
+        <span class="hero-title-line accent">Abduction</span>
+        <span class="hero-title-line">Insurance</span>
+      </h1>
+      <p class="hero-sub">The only insurance company in the universe<br>that actually believes your story.</p>
+      <div class="hero-cta">
+        <button class="btn btn-primary btn-lg" data-page="quote">Get a quote</button>
+        <button class="btn btn-outline btn-lg" data-page="login" id="heroLoginBtn">Sign in</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">12,847</span>
+          <span class="stat-label">Insured clients</span>
+        </div>
+        <div class="stat-divider">◈</div>
+        <div class="stat">
+          <span class="stat-num">$2.4B</span>
+          <span class="stat-label">Paid out</span>
+        </div>
+        <div class="stat-divider">◈</div>
+        <div class="stat">
+          <span class="stat-num">47</span>
+          <span class="stat-label">Galaxies covered</span>
+        </div>
+      </div>
+    </div>
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">🛸</div>
+        <h3>Full coverage</h3>
+        <p>Abduction, probing, temporary memory loss and implants - all included.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔭</div>
+        <h3>Cosmic context</h3>
+        <p>Every claim is enriched with NASA data about the night sky at the time of abduction.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Fast payouts</h3>
+        <p>Average processing time - 48 galactic hours. No bureaucracy.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-login">
+    <div class="auth-container">
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tabLogin">Sign in</button>
+        <button class="auth-tab" id="tabRegister">Register</button>
+      </div>
+      <form class="auth-form" id="loginForm">
+        <div class="form-group">
+          <label class="form-label">Username</label>
+          <input class="form-input" type="text" id="loginUsername" placeholder="your_username" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input class="form-input" type="password" id="loginPassword" placeholder="••••••••" required/>
+        </div>
+        <button class="btn btn-primary btn-full" type="submit">Sign in</button>
+      </form>
+      <form class="auth-form hidden" id="registerForm">
+        <div class="form-group">
+          <label class="form-label">Username</label>
+          <input class="form-input" type="text" id="regUsername" placeholder="your_username" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" id="regEmail" placeholder="you@earth.com" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password (min. 6 characters)</label>
+          <input class="form-input" type="password" id="regPassword" placeholder="••••••••" required/>
+        </div>
+        <button class="btn btn-primary btn-full" type="submit">Create account</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="page" id="page-quote">
+    <div class="page-header">
+      <div>
+        <h2 class="page-title">Get a quote</h2>
+        <p class="page-desc">Find out your risk level and monthly premium - no account needed</p>
+      </div>
+    </div>
+    <div class="quote-layout">
+      <form class="quote-form panel" id="quoteForm">
+        <div class="form-group">
+          <label class="form-label">Residence zone</label>
+          <select class="form-input" id="qZone">
+            <option value="URBAN">🏙️ Urban</option>
+            <option value="SUBURBAN">🏘️ Suburban</option>
+            <option value="RURAL" selected>🌾 Rural</option>
+            <option value="AREA_51_ADJACENT">🚨 Area 51 adjacent</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nights outdoors per week: <span id="nightsVal">3</span></label>
+          <input class="form-range" type="range" id="qNights" min="0" max="7" value="3"/>
+          <div class="range-labels"><span>0</span><span>7</span></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Coverage amount ($)</label>
+          <input class="form-input" type="number" id="qCoverage" value="100000" min="10000" max="10000000" step="10000"/>
+        </div>
+        <div class="form-toggles">
+          <label class="toggle-label">
+            <input type="checkbox" id="qUfos" class="toggle-input"/>
+            <span class="toggle-track"></span>
+            <span>Previously reported UFO sightings</span>
+          </label>
+          <label class="toggle-label">
+            <input type="checkbox" id="qChip" class="toggle-input"/>
+            <span class="toggle-track"></span>
+            <span>Alien microchip detected</span>
+          </label>
+        </div>
+        <button class="btn btn-primary btn-full" type="submit">Calculate risk</button>
+      </form>
+      <div class="quote-result panel" id="quoteResult" style="display:none">
+        <div class="result-risk" id="resultRisk">-</div>
+        <div class="result-label">Risk level</div>
+        <div class="result-divider"></div>
+        <div class="result-price-row">
+          <div>
+            <div class="result-price" id="resultMonthly">-</div>
+            <div class="result-price-label">Per month</div>
+          </div>
+          <div>
+            <div class="result-price" id="resultAnnual">-</div>
+            <div class="result-price-label">Per year</div>
+          </div>
+        </div>
+        <div class="result-breakdown" id="resultBreakdown"></div>
+        <button class="btn btn-primary btn-full" id="buyPolicyBtn" style="display:none">Get this policy</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-policies">
+    <div class="page-header">
+      <h2 class="page-title">My policies</h2>
+      <button class="btn btn-primary" id="newPolicyBtn">+ New policy</button>
+    </div>
+    <div class="cards-grid" id="policiesGrid">
+      <div class="empty-state">
+        <div class="empty-icon">📋</div>
+        <p>You have no active policies</p>
+        <button class="btn btn-outline" data-page="quote">Get a quote</button>
+      </div>
+    </div>
+
+    <div class="modal-overlay hidden" id="policyModal">
+      <div class="modal">
+        <div class="modal-header">
+          <h3>New policy</h3>
+          <button class="modal-close" id="closePolicyModal">✕</button>
+        </div>
+        <form id="policyForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Residence zone</label>
+              <select class="form-input" id="pZone">
+                <option value="URBAN">🏙️ Urban</option>
+                <option value="SUBURBAN">🏘️ Suburban</option>
+                <option value="RURAL">🌾 Rural</option>
+                <option value="AREA_51_ADJACENT">🚨 Area 51 adjacent</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Nights outdoors per week</label>
+              <input class="form-input" type="number" id="pNights" min="0" max="7" value="2"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Coverage amount ($)</label>
+              <input class="form-input" type="number" id="pCoverage" value="100000" min="10000" max="10000000"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Start date</label>
+              <input class="form-input" type="date" id="pStart"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">End date</label>
+              <input class="form-input" type="date" id="pEnd"/>
+            </div>
+          </div>
+          <div class="form-toggles">
+            <label class="toggle-label">
+              <input type="checkbox" id="pUfos" class="toggle-input"/>
+              <span class="toggle-track"></span>
+              <span>Previously reported UFO sightings</span>
+            </label>
+            <label class="toggle-label">
+              <input type="checkbox" id="pChip" class="toggle-input"/>
+              <span class="toggle-track"></span>
+              <span>Alien microchip detected</span>
+            </label>
+          </div>
+          <button class="btn btn-primary btn-full" type="submit">Create policy</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-claims">
+    <div class="page-header">
+      <h2 class="page-title">My claims</h2>
+      <button class="btn btn-primary" id="newClaimBtn">+ Submit claim</button>
+    </div>
+    <div class="cards-grid" id="claimsGrid">
+      <div class="empty-state">
+        <div class="empty-icon">🛸</div>
+        <p>No abduction claims on file</p>
+        <p class="empty-sub">We hope it stays that way.</p>
+      </div>
+    </div>
+
+    <div class="modal-overlay hidden" id="claimModal">
+      <div class="modal modal-wide">
+        <div class="modal-header">
+          <h3>Submit an abduction claim</h3>
+          <button class="modal-close" id="closeClaimModal">✕</button>
+        </div>
+        <form id="claimForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Policy</label>
+              <select class="form-input" id="claimPolicyId"></select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Date and time of abduction</label>
+              <input class="form-input" type="datetime-local" id="claimDateTime"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Abduction location</label>
+              <input class="form-input" type="text" id="claimLocation" placeholder="Bellefleur, Oregon"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Hours missing</label>
+              <input class="form-input" type="number" id="claimHours" min="1" value="1"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Claimed amount ($)</label>
+              <input class="form-input" type="number" id="claimAmount" min="0" value="10000"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Incident description (min. 50 characters)</label>
+            <textarea class="form-input form-textarea" id="claimDesc" placeholder="Describe in detail what happened..."></textarea>
+          </div>
+          <div class="form-toggles">
+            <label class="toggle-label">
+              <input type="checkbox" id="claimWitness" class="toggle-input"/>
+              <span class="toggle-track"></span>
+              <span>Witnesses were present</span>
+            </label>
+            <label class="toggle-label">
+              <input type="checkbox" id="claimProbe" class="toggle-input"/>
+              <span class="toggle-track"></span>
+              <span>Medical evidence of extraterrestrial probing</span>
+            </label>
+          </div>
+          <button class="btn btn-primary btn-full" type="submit">Submit claim</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="page-admin">
+    <div class="page-header">
+      <h2 class="page-title">⚙ Admin panel</h2>
+      <button class="btn btn-outline" id="refreshAdmin">↻ Refresh</button>
+    </div>
+    <div class="admin-tabs">
+      <button class="admin-tab active" id="adminTabClaims">All claims</button>
+    </div>
+    <div class="cards-grid" id="adminClaimsGrid">
+      <div class="loader">Loading...</div>
+    </div>
+
+    <div class="modal-overlay hidden" id="reviewModal">
+      <div class="modal">
+        <div class="modal-header">
+          <h3>Review claim</h3>
+          <button class="modal-close" id="closeReviewModal">✕</button>
+        </div>
+        <div id="reviewClaimInfo" class="review-info"></div>
+        <form id="reviewForm">
+          <div class="form-group">
+            <label class="form-label">Decision</label>
+            <select class="form-input" id="reviewStatus">
+              <option value="APPROVED">✅ Approve</option>
+              <option value="REJECTED">❌ Reject</option>
+              <option value="PENDING_EVIDENCE">⏳ Request more evidence</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Approved amount ($)</label>
+            <input class="form-input" type="number" id="reviewAmount" min="0"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Reviewer notes</label>
+            <textarea class="form-input form-textarea" id="reviewNotes" placeholder="Add notes..."></textarea>
+          </div>
+          <button class="btn btn-primary btn-full" type="submit">Save decision</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="toast-container" id="toastContainer"></div>
+<script src="app.js"></script>
+</body>
+</html>
